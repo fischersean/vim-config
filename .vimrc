@@ -1,4 +1,7 @@
-" Specify a directory for plugins
+
+
+
+"Plugin manager
 call plug#begin('~/.vim/plugged')
 
 Plug 'psf/black'
@@ -17,9 +20,18 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'sheerun/vim-polyglot'
 Plug 'joshdick/onedark.vim'
 Plug 'rakr/vim-one'
+Plug 'mhinz/vim-startify'
+Plug 'ryanoasis/vim-devicons'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " Initialize plugin system
 call plug#end()
 
+" VIM configuration
+set relativenumber
+set encoding=UTF-8
+
+" Plugin Configuration
 " Begin my changes
 syntax on
 let g:airline_theme='one'
@@ -34,4 +46,11 @@ set guifont=HackNerdFontComplete-Regular:h13
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+
+map <C-n> :NERDTreeToggle<CR>
+let NERDTreeShowHidden = 1
+let NERDTreeShowLineNumbers = 1
 " End my changes
+" Pyhon specific coniguration
