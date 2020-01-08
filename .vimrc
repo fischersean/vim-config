@@ -78,7 +78,12 @@ Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" Initialize plugin system
+
+" Supertab
+Plug 'ervandew/supertab'
+
+" Auto complete the obvious stuff
+Plug 'vim-scripts/AutoClose'
 call plug#end()
 
 " Control p configuration
