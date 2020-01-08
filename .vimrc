@@ -58,17 +58,23 @@ Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
 Plug 'scrooloose/nerdcommenter'
 "Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
+Plug 'MattesGroeger/vim-bookmarks'
+
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'sheerun/vim-polyglot'
 Plug 'joshdick/onedark.vim'
 Plug 'rakr/vim-one'
 Plug 'mhinz/vim-startify'
 Plug 'ryanoasis/vim-devicons'
+
+Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Initialize plugin system
 call plug#end()
 
+" Control p configuration
+ctrlp_working_path_mode = 1
 " VIM configuration
 set relativenumber
 set encoding=UTF-8
@@ -102,3 +108,5 @@ let NERDTreeShowHidden = 1
 let NERDTreeShowLineNumbers = 1
 " End my changes
 " Pyhon specific coniguration
+"
+g:pymode_folding = 1
