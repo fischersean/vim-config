@@ -44,29 +44,37 @@ set smarttab
 
 "Plugin manager
 call plug#begin('~/.vim/plugged')
+" Nerd tree plugins
 
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-Plug 'psf/black'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree'
-"Plug 'tsony-tsonev/nerdtree-git-plugin'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
-Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
-Plug 'scrooloose/nerdcommenter'
-"Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
+
+" Python plugins
+Plug 'davidhalter/jedi-vim' 
+"Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+Plug 'psf/black'
+
+" Searching and misc.
 Plug 'MattesGroeger/vim-bookmarks'
+Plug 'scrooloose/nerdcommenter'
+Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
 
-Plug 'christoomey/vim-tmux-navigator'
+" Code compatability
 Plug 'sheerun/vim-polyglot'
+
+" Themse
 Plug 'joshdick/onedark.vim'
 Plug 'rakr/vim-one'
-Plug 'mhinz/vim-startify'
 Plug 'ryanoasis/vim-devicons'
 
+" Start menu
+Plug 'mhinz/vim-startify'
+
+" Plugins for airline bar
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -74,11 +82,13 @@ Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 " Control p configuration
-ctrlp_working_path_mode = 1
+let g:ctrlp_working_path_mode = 'ra'
+"ctrlp_working_path_mode = 1
 " VIM configuration
 set relativenumber
 set encoding=UTF-8
 
+let g:startify_bookmarks = ["~/Documents/local-repo", "~/Documents/local-repo/jabberwocky"]
 autocmd VimEnter *
             \   if !argc()
             \ |   Startify
@@ -92,8 +102,11 @@ let g:airline_theme='one'
 set termguicolors
 colorscheme onedark
 set background=dark
+
 autocmd BufWritePre *.py execute ':Black'
 nnoremap <F9> :Black<CR>
+let g:black_linelength=79
+
 set guifont=HackNerdFontComplete-Regular:h13
 
 " Nerd Tree configuration
@@ -109,4 +122,4 @@ let NERDTreeShowLineNumbers = 1
 " End my changes
 " Pyhon specific coniguration
 "
-g:pymode_folding = 1
+"g:pymode_folding = 1
