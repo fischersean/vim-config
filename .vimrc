@@ -44,14 +44,13 @@ set smarttab
 
 "Plugin manager
 call plug#begin('~/.vim/plugged')
-" Nerd tree plugins
 
+" Nerd tree plugins
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
-
 
 " Python plugins
 Plug 'davidhalter/jedi-vim' 
@@ -84,6 +83,7 @@ Plug 'ervandew/supertab'
 
 " Auto complete the obvious stuff
 Plug 'vim-scripts/AutoClose'
+
 call plug#end()
 
 " Control p configuration
