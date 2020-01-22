@@ -84,6 +84,12 @@ Plug 'ervandew/supertab'
 " Auto complete the obvious stuff
 Plug 'vim-scripts/AutoClose'
 
+"better sessions
+Plug 'xolox/vim-session'
+Plug 'xolox/vim-misc'
+
+" Linters
+Plug 'dense-analysis/ale'
 call plug#end()
 
 " Control p configuration
@@ -124,7 +130,9 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeShowHidden = 1
 let NERDTreeShowLineNumbers = 1
-" End my changes
+let NERDTReeShowBookmarks = 1
 " Pyhon specific coniguration
 "
 "g:pymode_folding = 1
+"Get rid of annoying autosave messages
+let g:session_autosave = 'no'
