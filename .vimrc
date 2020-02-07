@@ -90,6 +90,7 @@ Plug 'xolox/vim-misc'
 
 " Linters
 Plug 'dense-analysis/ale'
+Plug 'rhysd/vim-clang-format'
 call plug#end()
 
 " Control p configuration
@@ -136,3 +137,6 @@ let NERDTReeShowBookmarks = 1
 "g:pymode_folding = 1
 "Get rid of annoying autosave messages
 let g:session_autosave = 'no'
+
+"Clagn formt
+autocmd FileType c ClangFormatAutoEnable
