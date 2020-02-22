@@ -93,6 +93,9 @@ Plug 'dense-analysis/ale'
 Plug 'rhysd/vim-clang-format'
 call plug#end()
 
+" folding
+setlocal foldmethod=syntax
+
 " Control p configuration
 let g:ctrlp_working_path_mode = 'ra'
 "ctrlp_working_path_mode = 1
