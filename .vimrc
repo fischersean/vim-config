@@ -41,6 +41,8 @@ set expandtab
 " Enable intelligent tabbing and spacing for indentation and alignment
 set smarttab
 
+" Highlight entire line
+set cursorline
 
 "Plugin manager
 call plug#begin('~/.vim/plugged')
@@ -69,6 +71,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'joshdick/onedark.vim'
 Plug 'rakr/vim-one'
 Plug 'ryanoasis/vim-devicons'
+Plug 'altercation/vim-colors-solarized'
+Plug 'arzg/vim-colors-xcode'
 
 " Start menu
 Plug 'mhinz/vim-startify'
@@ -94,7 +98,7 @@ Plug 'rhysd/vim-clang-format'
 call plug#end()
 
 " folding
-setlocal foldmethod=syntax
+set foldmethod=syntax
 
 " Control p configuration
 let g:ctrlp_working_path_mode = 'ra'
@@ -141,5 +145,9 @@ let NERDTReeShowBookmarks = 1
 "Get rid of annoying autosave messages
 let g:session_autosave = 'no'
 
-"Clagn formt
+"Clang formt
 autocmd FileType c ClangFormatAutoEnable
+autocmd FileType h ClangFormatAutoEnable
+
+"JSON formating
+autocmd BufWritePre *.json execute ':%!python -m json.tool'
