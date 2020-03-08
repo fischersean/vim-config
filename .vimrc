@@ -117,7 +117,7 @@ autocmd VimEnter *
 " Plugin Configuration
 " Begin my changes
 syntax on
-let g:airline_theme='one'
+let g:airline_theme='wombat'
 set termguicolors
 colorscheme onedark
 set background=dark
@@ -130,7 +130,7 @@ set guifont=HackNerdFontComplete-Regular:h13
 
 " Nerd Tree configuration
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTreeVCS | endif
+autocmd VimEnter * if argc() = 0 && !exists("s:std_in") | NERDTreeVCS | endif
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTreeVCS' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
