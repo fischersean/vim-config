@@ -108,6 +108,7 @@ set relativenumber
 set encoding=UTF-8
 
 let g:startify_bookmarks = ["~/Documents/local-repo", "~/Documents/local-repo/jabberwocky"]
+let g:startify_session_dir = '~/.vim/sessions'
 autocmd VimEnter *
             \   if !argc()
             \ |   Startify
@@ -118,7 +119,7 @@ autocmd VimEnter *
 " Begin my changes
 syntax on
 let g:airline_theme='wombat'
-set termguicolors
+"set termguicolors
 colorscheme onedark
 set background=dark
 
@@ -136,6 +137,7 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTreeVCS' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 
 map <C-n> :NERDTreeToggle<CR>
+map <leader>nf :NERDTreeFind<CR>
 let NERDTreeShowHidden = 1
 let NERDTreeShowLineNumbers = 1
 let NERDTReeShowBookmarks = 1
@@ -151,3 +153,5 @@ autocmd FileType h ClangFormatAutoEnable
 
 "JSON formating
 autocmd BufWritePre *.json execute ':%!python -m json.tool'
+
+noremap ; :
