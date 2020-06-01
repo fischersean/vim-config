@@ -95,6 +95,10 @@ Plug 'xolox/vim-misc'
 " Linters
 Plug 'dense-analysis/ale'
 Plug 'rhysd/vim-clang-format'
+
+
+" Golang support
+Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 call plug#end()
 
 " folding
@@ -138,7 +142,7 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 
 map <C-n> :NERDTreeToggle<CR>
 map <leader>nf :NERDTreeFind<CR>
-let NERDTreeShowHidden = 1
+let NERDTreeShowHidden = 0
 let NERDTreeShowLineNumbers = 1
 let NERDTReeShowBookmarks = 1
 " Pyhon specific coniguration
@@ -153,5 +157,13 @@ autocmd FileType h ClangFormatAutoEnable
 
 "JSON formating
 autocmd BufWritePre *.json execute ':%!python -m json.tool'
+
+"JS formating
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=4 softtabstop=2 expandtab
+
+let g:ale_completion_enabled = 1
+
+" GoPath
+autocmd VimEnter * GoPath /Users/seanfischer/Documents/local-repo/go
 
 noremap ; :
