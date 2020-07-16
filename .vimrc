@@ -57,7 +57,7 @@ Plug 'airblade/vim-gitgutter'
 " Python plugins
 Plug 'davidhalter/jedi-vim' 
 "Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-Plug 'psf/black'
+"Plug 'psf/black'
 
 " Searching and misc.
 Plug 'MattesGroeger/vim-bookmarks'
@@ -135,7 +135,7 @@ set background=dark
 autocmd BufWritePre *.py execute ':ALEFix'
 
 "let g:black_virtualenv="~/.vim/.vim_black"
-"nnoremap <F9> :Black<CR>
+nnoremap <F9> :ALEFix<CR>
 "let g:black_linelength=79
 
 set guifont=HackNerdFontComplete-Regular:h13
