@@ -35,6 +35,10 @@ set softtabstop=4
 " Number of spaces indented when reindent operations (>> and <<) are used
 set shiftwidth=4
 
+" Stop showing scrollbars
+set guioptions-=L
+set guioptions-=r
+
 " Convert TABs to spaces
 set expandtab
 
