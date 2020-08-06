@@ -91,7 +91,6 @@ Plug 'sheerun/vim-polyglot'
 " Themse
 Plug 'joshdick/onedark.vim'
 "Plug 'rakr/vim-one'
-Plug 'ryanoasis/vim-devicons'
 
 " Start menu
 Plug 'mhinz/vim-startify'
@@ -217,8 +216,9 @@ let g:ale_go_gofmt_options = '-s'
 
 let g:ale_completion_enabled = 1
 
-noremap <leader>d :ALEGoToDefinition -vsplit
-noremap <leader>r :ALERename
+nnoremap <leader>d :ALEGoToDefinition -vsplit
+nnoremap <leader>r :ALERename<CR>
+nnoremap <leader>f :ALEFindReferences<CR>
 nnoremap <F6> :ALEFix<CR>
 nnoremap <F5> :ALELint<CR>
 
