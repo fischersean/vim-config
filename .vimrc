@@ -193,8 +193,14 @@ let g:ale_go_gofmt_options = '-s'
 set omnifunc=ale#completion#OmniFunc
 let g:ale_completion_enabled = 0
 
+<<<<<<< HEAD
 noremap <leader>d :ALEGoToDefinition<CR>
 noremap <leader>r :ALERename<CR>
+=======
+nnoremap <leader>d :ALEGoToDefinition -vsplit
+nnoremap <leader>r :ALERename<CR>
+nnoremap <leader>f :ALEFindReferences<CR>
+>>>>>>> cbbcc4127dc871e82e935f91cede366af0b2cc3b
 nnoremap <F6> :ALEFix<CR>
 nnoremap <F5> :ALELint<CR>
 
