@@ -3,7 +3,6 @@
 " Required for vim to be iMproved
 set nocompatible
 
-
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
@@ -24,7 +23,7 @@ endif
 filetype indent plugin on
 
 " Enable syntax highlighting
-syntax on
+"syntax on
 
 " Better command-line completion
 set wildmode=longest,list,full
@@ -70,15 +69,10 @@ call plug#begin('~/.vim/plugged')
 
 " Nerd tree plugins
 Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'Xuyuanp/nerdtree-git-plugin'
+
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
-Plug 'airblade/vim-gitgutter'
-
-" Python plugins
-"Plug 'davidhalter/jedi-vim' 
-"Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-"Plug 'psf/black'
 
 " Searching and misc.
 Plug 'MattesGroeger/vim-bookmarks'
@@ -90,17 +84,11 @@ Plug 'sheerun/vim-polyglot'
 
 " Themse
 Plug 'joshdick/onedark.vim'
-"Plug 'rakr/vim-one'
-Plug 'ryanoasis/vim-devicons'
-
-" Start menu
-Plug 'mhinz/vim-startify'
+Plug 'morhetz/gruvbox'
 
 " Plugins for airline bar
 Plug 'tpope/vim-fugitive'
 Plug 'itchyny/lightline.vim'
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
 
 " Supertab
 Plug 'ervandew/supertab'
@@ -116,10 +104,6 @@ Plug 'xolox/vim-misc'
 
 " Linters
 Plug 'dense-analysis/ale'
-Plug 'rhysd/vim-clang-format'
-
-" Golang support
-"Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 
 call plug#end()
 
@@ -132,59 +116,42 @@ set foldmethod=syntax
 " Control p configuration
 let g:ctrlp_working_path_mode = 'ra'
 "ctrlp_working_path_mode = 1
+"
 " VIM configuration
 set relativenumber
 set encoding=UTF-8
-
-let g:startify_bookmarks = ["~/Documents/local-repo", "~/Documents/local-repo/jabberwocky"]
-let g:startify_session_dir = '~/.vim/sessions'
-autocmd VimEnter *
-            \   if !argc()
-            \ |   Startify
-            \ |   wincmd w
-            \ | endif
 
 " Plugin Configuration
 " Begin my changes
 syntax on
 
 "set termguicolors
-colorscheme onedark
+syntax enable
 set background=dark
-
-autocmd BufWritePre *.py execute ':ALEFix'
-
-"let g:black_virtualenv="~/.vim/.vim_black"
-"let g:black_linelength=79
+colorscheme gruvbox
+"colorscheme onedark
 
 set guifont=HackNerdFontComplete-Regular:h13
 
 " Nerd Tree configuration
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTreeVCS | endif
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTreeVCS | endif
 
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTreeVCS' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+"autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTreeVCS' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 map <C-n> :NERDTreeToggle<CR>
+"map <C-n> :Lexplore<CR>
+
+"let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 map <leader>nf :NERDTreeFind<CR>
 let NERDTreeShowHidden = 0
 let NERDTreeShowLineNumbers = 1
 let NERDTReeShowBookmarks = 1
-" Pyhon specific coniguration
-"
-"g:pymode_folding = 1
+
 "Get rid of annoying autosave messages
 let g:session_autosave = 'no'
 let g:session_autoload = 'no'
-
-"Clang formt
-autocmd FileType c ClangFormatAutoEnable
-autocmd FileType h ClangFormatAutoEnable
-
-"JSON formating
-"autocmd BufWritePre *.json execute ':%!python -m json.tool'
 
 " Ragtag for vue
 autocmd FileType vue call g:RagtagInit()
@@ -198,6 +165,7 @@ autocmd FileType toml setlocal shiftwidth=2 tabstop=4 softtabstop=2 expandtab
 
 " ALE
 let g:ale_lint_on_save = 0
+
 let g:ale_fixers = {
 \   'python': ['black'],
 \   'javascript': ['prettier'],
@@ -205,27 +173,37 @@ let g:ale_fixers = {
 \   'css': ['prettier'],
 \   'html': ['prettier'],
 \   'go': ['gofmt'],
+\   'c': ['clang-format'],
+\   'swift': ['swifformat'],
 \}
 
 let g:ale_linters = {
+\   'vue': ['eslint'],
+\   'javascript': ['eslint'],
 \   'go': ['gopls'],
 \   'python': ['pyls'],
+\   'c': ['clang'],
+\   'swift': ['sourcekitlsp'],
 \}
+
 let g:ale_javascript_prettier_options = '--single-quote --trailing-comma all'
 let g:ale_python_black_options = '--line-length 79'
 let g:ale_go_gofmt_options = '-s'
 
-let g:ale_completion_enabled = 1
+set omnifunc=ale#completion#OmniFunc
+let g:ale_completion_enabled = 0
 
-noremap <leader>d :ALEGoToDefinition -vsplit
-noremap <leader>r :ALERename
+noremap <leader>d :ALEGoToDefinition<CR>
+noremap <leader>r :ALERename<CR>
 nnoremap <F6> :ALEFix<CR>
 nnoremap <F5> :ALELint<CR>
 
 noremap ; :
 
+autocmd FileType * exe "normal zR"
+
 let g:lightline = {
-      \ 'colorscheme': 'onedark',
+      \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -235,3 +213,11 @@ let g:lightline = {
       \ },
       \ }
 
+" Autoclose
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
