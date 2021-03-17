@@ -94,7 +94,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'ervandew/supertab'
 
 " Auto complete the obvious stuff
-"Plug 'vim-scripts/AutoClose'
+Plug 'tpope/vim-surround'
 
 Plug 'tpope/vim-ragtag'
 
