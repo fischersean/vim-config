@@ -1,4 +1,3 @@
-
 " Stuff from learn x in y minutes
 " Required for vim to be iMproved
 set nocompatible
@@ -6,17 +5,15 @@ set nocompatible
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-if (empty($TMUX))
-  if (has("nvim"))
-    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-  if (has("termguicolors"))
-    set termguicolors
-  endif
+if (has("nvim"))
+  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+if (has("termguicolors"))
+  set termguicolors
 endif
 
 " Determines filetype from name to allow intelligent auto-indenting, etc.
@@ -39,8 +36,6 @@ set autoindent
 
 " Display line numbers on the left
 set number
-
-" Indentation options, change according to personal preference
 
 " Number of visual spaces per TAB
 set tabstop=4
@@ -105,6 +100,9 @@ Plug 'xolox/vim-misc'
 " Linters
 Plug 'dense-analysis/ale'
 
+" Python code folding
+Plug 'tmhedberg/SimpylFold'
+
 call plug#end()
 
 " Fix pwd
@@ -155,6 +153,7 @@ let g:session_autoload = 'no'
 
 " Ragtag for vue
 autocmd FileType vue call g:RagtagInit()
+autocmd FileType md call g:RagtagInit()
 
 "JS formating
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=4 softtabstop=2 expandtab
@@ -175,6 +174,8 @@ let g:ale_fixers = {
 \   'go': ['gofmt'],
 \   'c': ['clang-format'],
 \   'swift': ['swifformat'],
+\   'json': ['jq'],
+\   'dart': ['dartfmt'],
 \}
 
 let g:ale_linters = {
@@ -184,24 +185,27 @@ let g:ale_linters = {
 \   'python': ['pyls'],
 \   'c': ['clang'],
 \   'swift': ['sourcekitlsp'],
+\   'yaml': ['yamllint'],
+\   'dart': ['analysis_server'],
 \}
 
-let g:ale_javascript_prettier_options = '--single-quote --trailing-comma all'
+let g:vue_pre_processors = []
+
 let g:ale_python_black_options = '--line-length 79'
 let g:ale_go_gofmt_options = '-s'
 
 set omnifunc=ale#completion#OmniFunc
 let g:ale_completion_enabled = 0
 
-nnoremap <leader>d :ALEGoToDefinition -vsplit
-nnoremap <leader>r :ALERename<CR>
-nnoremap <leader>f :ALEFindReferences<CR>
+noremap <leader>d :ALEGoToDefinition<CR>
+noremap <leader>r :ALERename<CR>
 nnoremap <F6> :ALEFix<CR>
 nnoremap <F5> :ALELint<CR>
 
 noremap ; :
 
-autocmd FileType * exe "normal zR"
+autocmd FileType go exe "normal zR"
+autocmd FileType python exe "normal zR"
 
 let g:lightline = {
       \ 'colorscheme': 'gruvbox',
@@ -222,3 +226,7 @@ inoremap [ []<left>
 inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
+
+" Better escap sequence
+inoremap jk <Esc>
+inoremap kj <Esc>
